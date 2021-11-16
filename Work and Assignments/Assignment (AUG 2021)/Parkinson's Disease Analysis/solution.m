@@ -34,21 +34,23 @@ f = size(X,2);
 
 %% Test2: Compute mean vector (mean_x) of X
 % Hint: compute mean of every column
-mean_x = mean(X,1);
+mean_x = mean(X);
 
 %% Test3: Compute Covariance matrix (sigmaMat)
-sigmaMat = cov(X-mean_x);
+sigmaMat = cov(X);
 
 % Computing eigenvalues and eigenvectors
 % D is a diagonal matrix containing all eigenvalues 
 % V contains the corresponding eigenvectors
 [V, D] = eig(sigmaMat);
-eigenvalues = diag(D);
 
 %% Test 4: Select principal components (PC) corresponding to two eigen values with largest magnitude
 % Hint: sort the eigen values in descending order and select the eigenvectors corresponding to first two eigen values
 nPC = 2;
-PC = eigenvalues(end-nPC+1:end);
+d = sort(diag(D),'descend');
+d1 = find(diag(D) == d(1),1);
+d2 = find(diag(D) == d(2),1);
+PC = V(:,[d1,d2]);
 
 %% Test 5: Projected Data (PD)
-PD = X * V(:,end-nPC+1:end);
+PD = X*PC;
