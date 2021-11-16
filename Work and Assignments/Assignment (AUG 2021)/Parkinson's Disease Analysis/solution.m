@@ -34,7 +34,7 @@ f = size(X,2);
 
 %% Test2: Compute mean vector (mean_x) of X
 % Hint: compute mean of every column
-mean_x = mean(X,2);
+mean_x = mean(X,1);
 
 %% Test3: Compute Covariance matrix (sigmaMat)
 sigmaMat = cov(X-mean_x);
